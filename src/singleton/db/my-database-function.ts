@@ -1,19 +1,30 @@
-import { User } from "../interface/user";
+import { User } from "../interface/user"; // export default MyDatabaseClassic;
 
-const users: User[] = [];
+export class MyDatabaseClassic {
+  private static instance: MyDatabaseClassic | null = null;
+  private users: User[] = [];
 
-export const MyDatabaseFunctionfunction = ( function () {
-    return {
-        add(user: User): void {
-            users.push(user)
-        },
+  private constructor() {}
 
-    //Criar a função para deletar um usuário
-
-    show(): void {
-            for (const user of users) {
-                console.log(user.name)
-            }
-        }
+  static getInstance(): MyDatabaseClassic {
+    if (MyDatabaseClassic.instance === null) {
+      MyDatabaseClassic.instance = new MyDatabaseClassic();
     }
-})
+
+    return MyDatabaseClassic.instance;
+  }
+
+  add(user: User): void {
+    this.users.push(user);
+  }
+
+  remove(index: number): void {
+    this.users.splice(index, 1);
+  }
+
+  show(): void {
+    for (const user of this.users) {
+      console.log(user);
+    }
+  }
+}

@@ -1,17 +1,19 @@
-import { User } from "../interface/user";
+import { User } from "../interface/user"; // export default MyDatabaseClassic;
 
 const users: User[] = [];
 
-export const MyDatabaseMetod = {
-    add(user: User): void {
-        users.push(user)
-    },
+export class MyDatabaseMetod {
+  add(user: User): void {
+    users.push(user);
+  }
 
-    //Criar um método para remover o usuário.
-    
-    show(): void{
-        for(const user of users){
-            console.log(user)
-        }
+  remove(index: number): void {
+    users.splice(index, 1);
+  }
+
+  show(): void {
+    for (const user of users) {
+      console.log(user);
     }
+  }
 }

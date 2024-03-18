@@ -1,24 +1,26 @@
-import { User } from '../interface/user';
+import { User } from "../interface/user"; // export default MyDatabaseClassic;
 
 export class MyDatabaseClassic {
-  private static _instance: MyDatabaseClassic | null = null;
+  private static instance: MyDatabaseClassic | null = null;
   private users: User[] = [];
 
   private constructor() {}
 
-  static get instance(): MyDatabaseClassic {
-    if (MyDatabaseClassic._instance === null) {
-      MyDatabaseClassic._instance = new MyDatabaseClassic();
+  static getInstance(): MyDatabaseClassic {
+    if (MyDatabaseClassic.instance === null) {
+      MyDatabaseClassic.instance = new MyDatabaseClassic();
     }
 
-    return MyDatabaseClassic._instance;
+    return MyDatabaseClassic.instance;
   }
 
   add(user: User): void {
     this.users.push(user);
   }
 
-  // Criar um método para remover usuário.
+  remove(index: number): void {
+    this.users.splice(index, 1);
+  }
 
   show(): void {
     for (const user of this.users) {
